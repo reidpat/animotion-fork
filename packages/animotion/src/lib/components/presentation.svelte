@@ -15,6 +15,9 @@
 
 	let { children, options, ...props }: PresentationProps = $props()
 
+
+	let deck: any;
+
 	async function init() {
 		const Reveal = (await import('reveal.js')).default
 		const Markdown = (await import('reveal.js/plugin/markdown/markdown')).default
@@ -32,7 +35,7 @@
 			minScale: 0.2,
 			maxScale: 2.0,
 			// plugins
-			plugins: [Markdown, Highlight, Math.KaTeX, Notes],
+			plugins: [Markdown, Highlight, Notes],
 			// slide controls
 			controls: true,
 			// slide progress bar
@@ -60,7 +63,7 @@
 		}
 
 		// create deck instance
-		const deck = new Reveal({ ...defaults, ...options })
+		deck = new Reveal({ ...defaults, ...options})
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
@@ -135,7 +138,11 @@
 	function reloadPageAfterUpdate() {
 		if (import.meta.hot) {
 			import.meta.hot.on('vite:afterUpdate', () => {
-				location.reload()
+				// console.log(deck);
+				deck.sync();
+				// let slide = deck.getCurrentSlide();
+				// deck.syncSlide(slide);
+				// location.reload()
 			})
 		}
 	}
