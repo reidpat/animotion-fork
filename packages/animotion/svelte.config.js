@@ -7,8 +7,16 @@ const config = {
 	kit: {
 		adapter: adapter()
 	},
+	vitePlugin: {
+		// set to true for defaults or customize with object
+		inspector: {
+			toggleKeyCombo: 'control-shift',
+			showToggleButton: 'always',
+			toggleButtonPos: 'bottom-right'
+		}
+	},
 	server: {
-		HMR: {overlay: false}
+		HMR: { overlay: false }
 	}
 }
 

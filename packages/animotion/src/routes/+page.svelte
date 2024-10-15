@@ -1,6 +1,7 @@
 <script>
 	import DynamicSlide from '$lib/components/DynamicSlide.svelte'
 	import { Presentation } from '$lib/index.js'
+	import Test1 from '$lib/slides/test1.svelte'
 	import { onMount } from 'svelte'
 
 	let slides = [];
@@ -19,10 +20,13 @@
 	})
 </script>
 
-<Presentation
+
+<Test1 />
+
+<!-- <Presentation
 	options={{ history: true, transition: 'slide', controls: true, progress: true, reload: true, disableLayout: false }}
 >	
 	{#each slides as slide}
 		<DynamicSlide slidePath={slide} />
 	{/each}
-</Presentation>
+</Presentation> -->

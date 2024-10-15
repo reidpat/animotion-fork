@@ -6,6 +6,8 @@
     let SlideComponent = null;
     let error = null;
 
+    export let id;
+
 
     async function loadSlide() {
         console.log(`Loading slide: ${slidePath}`);
@@ -30,5 +32,5 @@
 </script>
 
 {#if SlideComponent}
-    <svelte:component this={SlideComponent} />
+    <svelte:component this={SlideComponent} id={id} />
 {/if}

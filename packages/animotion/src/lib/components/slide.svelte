@@ -18,6 +18,7 @@
 		interactive?: boolean
 		transition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom'
 		class?: string
+		id?: string
 	}
 
 	let { children, ...props }: SlideProps = $props()
@@ -43,6 +44,7 @@
 	data-background-interactive={props.interactive}
 	data-transition={props.transition}
 	class={props.class}
+	id={props.id}
 >
 	{#if children}
 		{@render children()}

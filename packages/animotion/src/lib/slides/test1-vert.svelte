@@ -2,6 +2,6 @@
 	import Slide from '$lib/components/slide.svelte'
 </script>
 
-<Slide>
+<Slide class="h-full place-content-center place-items-center">
 	<h1>Test 1 - Vertical!!</h1>
 </Slide>
