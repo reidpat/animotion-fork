@@ -16,10 +16,10 @@
 
 	let { children, options, ...props }: PresentationProps = $props()
 
-	let deck;
 
-	export async function init() {
-		console.log('Initializing presentation')
+	let deck: any;
+
+	async function init() {
 		const Reveal = (await import('reveal.js')).default
 		const Markdown = (await import('reveal.js/plugin/markdown/markdown')).default
 		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default
@@ -36,7 +36,7 @@
 			minScale: 0.2,
 			maxScale: 2.0,
 			// plugins
-			plugins: [Markdown, Highlight, Math.KaTeX, Notes],
+			plugins: [Markdown, Highlight, Notes],
 			// slide controls
 			controls: true,
 			// slide progress bar
@@ -64,8 +64,7 @@
 		}
 
 		// create deck instance
-		deck = new Reveal({ ...defaults, ...options })
-		deckStore.set(deck)
+		deck = new Reveal({ ...defaults, ...options})
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
