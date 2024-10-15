@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte'
 	import 'reveal.js/dist/reveal.css'
+	import { deckStore } from '$lib/store/deck.svelte.js'
 
 	type Options = {
 		reload?: boolean
@@ -132,17 +133,16 @@
 		if (options?.reload) {
 			// reload page after update to avoid HMR issues
 			reloadPageAfterUpdate()
+			console.log('reload')
 		}
 	}
 
 	function reloadPageAfterUpdate() {
 		if (import.meta.hot) {
 			import.meta.hot.on('vite:afterUpdate', () => {
-				// console.log(deck);
-				deck.sync();
-				// let slide = deck.getCurrentSlide();
-				// deck.syncSlide(slide);
-				// location.reload()
+				let currentSlide = deck.getCurrentSlide()
+				console.log(currentSlide);
+				deck.sync()
 			})
 		}
 	}
@@ -152,10 +152,12 @@
 	})
 </script>
 
-<div class="reveal">
-	<div class="slides {props.class}">
-		{#if children}
-			{@render children()}
-		{/if}
+{#key Date.now()}
+	<div class="reveal">
+		<div class="slides {props.class}">
+			{#if children}
+				{@render children()}
+			{/if}
+		</div>
 	</div>
-</div>
+{/key}
