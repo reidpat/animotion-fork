@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte'
 	import 'reveal.js/dist/reveal.css'
+	import { deckStore } from '$lib/store/deck.svelte.js'
 
 	type Options = {
 		reload?: boolean
@@ -15,7 +16,10 @@
 
 	let { children, options, ...props }: PresentationProps = $props()
 
-	async function init() {
+	let deck;
+
+	export async function init() {
+		console.log('Initializing presentation')
 		const Reveal = (await import('reveal.js')).default
 		const Markdown = (await import('reveal.js/plugin/markdown/markdown')).default
 		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default
@@ -60,7 +64,8 @@
 		}
 
 		// create deck instance
-		const deck = new Reveal({ ...defaults, ...options })
+		deck = new Reveal({ ...defaults, ...options })
+		deckStore.set(deck)
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
@@ -129,13 +134,16 @@
 		if (options?.reload) {
 			// reload page after update to avoid HMR issues
 			reloadPageAfterUpdate()
+			console.log('reload')
 		}
 	}
 
 	function reloadPageAfterUpdate() {
 		if (import.meta.hot) {
 			import.meta.hot.on('vite:afterUpdate', () => {
-				location.reload()
+				let currentSlide = deck.getCurrentSlide()
+				console.log(currentSlide);
+				deck.sync()
 			})
 		}
 	}
@@ -145,10 +153,12 @@
 	})
 </script>
 
-<div class="reveal">
-	<div class="slides {props.class}">
-		{#if children}
-			{@render children()}
-		{/if}
+{#key Date.now()}
+	<div class="reveal">
+		<div class="slides {props.class}">
+			{#if children}
+				{@render children()}
+			{/if}
+		</div>
 	</div>
-</div>
+{/key}

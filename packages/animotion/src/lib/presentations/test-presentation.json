@@ -1,0 +1,17 @@
+{
+    "slides": [
+        [
+            {
+                "path": "Test1.svelte"
+            },
+            {
+                "path": "Test1-vert.svelte"
+            }
+        ],
+        [
+            {
+                "path": "Test2.svelte"
+            }
+        ]
+    ]
+}
