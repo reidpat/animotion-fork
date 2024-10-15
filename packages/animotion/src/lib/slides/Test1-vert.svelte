@@ -1,7 +1,7 @@
 <script>
-	import Slide from "$lib/components/slide.svelte";
-
+	import Slide from '$lib/components/slide.svelte'
 </script>
-<Slide class="h-full place-content-center place-items-center">
-    <h1>Vertical Test 1</h1>
+
+<Slide>
+	<h1>Test 1 - Vertical!!</h1>
 </Slide>
