@@ -46,6 +46,9 @@ importers:
       shiki-magic-move:
         specifier: ^0.4.4
         version: 0.4.4(shiki@1.16.2)(svelte@5.0.0-next.167)
+      svelte-select:
+        specifier: ^5.8.3
+        version: 5.8.3
       tailwindcss:
         specifier: 4.0.0-alpha.15
         version: 4.0.0-alpha.15
@@ -658,6 +661,15 @@ packages:
   '@eslint/plugin-kit@0.1.0':
     resolution: {integrity: sha512-autAXT203ixhqei9xt+qkYOvY8l6LAFIdT2UXc/RPNeUVfqRF1BV94GTJyVPFKT8nFM6MyVJhjLj9E8JWvf5zQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@floating-ui/core@1.6.8':
+    resolution: {integrity: sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==}
+
+  '@floating-ui/dom@1.6.11':
+    resolution: {integrity: sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ==}
+
+  '@floating-ui/utils@0.2.8':
+    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@fontsource-variable/jetbrains-mono@5.0.21':
     resolution: {integrity: sha512-LL/57KBbM3r0UMuN6tSeYExiBObt0QuGq49m1FyoDFIv1GAcuKU0EQ/GAKJ/yt3R8onOCD3f5X9Dln//G6uzRQ==}
@@ -3322,6 +3334,9 @@ packages:
       svelte:
         optional: true
 
+  svelte-floating-ui@1.5.8:
+    resolution: {integrity: sha512-dVvJhZ2bT+kQDHlE4Lep8t+sgEc0XD96fXLzAi2DDI2bsaegBbClxXVNMma0C2WsG+n9GJSYx292dTvA8CYRtw==}
+
   svelte-hmr@0.16.0:
     resolution: {integrity: sha512-Gyc7cOS3VJzLlfj7wKS0ZnzDVdv3Pn2IuVeJPk9m2skfhcu5bq3wtIZyQGggr7/Iim5rH5cncyQft/kRLupcnA==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -3364,6 +3379,9 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  svelte-select@5.8.3:
+    resolution: {integrity: sha512-nQsvflWmTCOZjssdrNptzfD1Ok45hHVMTL5IHay5DINk7dfu5Er+8KsVJnZMJdSircqtR0YlT4YkCFlxOUhVPA==}
 
   svelte2tsx@0.7.18:
     resolution: {integrity: sha512-PCOhH7uQaV472ZvNAcnkvShjFRMMkKUc/eNJImQMH9T4CyHeQpdatedFrEjaMCsweFb/oo3a6bv4qtdfaCPw8g==}
@@ -4094,6 +4112,17 @@ snapshots:
   '@eslint/plugin-kit@0.1.0':
     dependencies:
       levn: 0.4.1
+
+  '@floating-ui/core@1.6.8':
+    dependencies:
+      '@floating-ui/utils': 0.2.8
+
+  '@floating-ui/dom@1.6.11':
+    dependencies:
+      '@floating-ui/core': 1.6.8
+      '@floating-ui/utils': 0.2.8
+
+  '@floating-ui/utils@0.2.8': {}
 
   '@fontsource-variable/jetbrains-mono@5.0.21': {}
 
@@ -7131,6 +7160,11 @@ snapshots:
     optionalDependencies:
       svelte: 5.0.0-next.167
 
+  svelte-floating-ui@1.5.8:
+    dependencies:
+      '@floating-ui/core': 1.6.8
+      '@floating-ui/dom': 1.6.11
+
   svelte-hmr@0.16.0(svelte@5.0.0-next.167):
     dependencies:
       svelte: 5.0.0-next.167
@@ -7160,6 +7194,10 @@ snapshots:
       postcss: 8.4.45
       postcss-load-config: 3.1.4(postcss@8.4.45)
       typescript: 5.5.4
+
+  svelte-select@5.8.3:
+    dependencies:
+      svelte-floating-ui: 1.5.8
 
   svelte2tsx@0.7.18(svelte@5.0.0-next.167)(typescript@5.5.4):
     dependencies:
