@@ -4,6 +4,7 @@
 
 	let debounceTimer
 	let meta
+    export let overview;
 
 	function debounce(func, delay) {
 		return (...args) => {
@@ -20,6 +21,7 @@
 			target.tagName.toLowerCase() !== 'body' &&
 			target.tagName.toLowerCase() !== 'html' &&
 			target.getAttribute('file')?.includes('slides') &&
+            !overview &&
 			target.textContent.trim() !== ''
 		)
 	}
@@ -29,8 +31,8 @@
 			file: target.getAttribute('file'),
 			start: target.getAttribute('start'),
 			end: target.getAttribute('end'),
-            line: target.getAttribute('line'),
-            column: target.getAttribute('column'),
+			line: target.getAttribute('line'),
+			column: target.getAttribute('column'),
 			tag: target.tagName.toLowerCase()
 		}
 		let fileSplit = _meta.file.split('/')
@@ -55,23 +57,25 @@
 		}
 	}, 1) // 100ms delay
 
-	let activeElement;
-    let activeMeta;
+	let activeElement
+	let activeMeta
 
 	function setActive(target) {
 		activeElement = event.target
-        activeMeta = getMeta(activeElement);
+		activeMeta = getMeta(activeElement)
 		activeElement.classList.add('border-solid')
 		activeElement.classList.add('border-2')
 		activeElement.classList.add('border-sky-500')
 	}
 
 	function removeActive(target) {
-		activeElement.classList.remove('border-solid')
-		activeElement.classList.remove('border-2')
-		activeElement.classList.remove('border-sky-500')
-        activeMeta = null;
-		activeElement = null
+		if (activeElement) {
+			activeElement.classList.remove('border-solid')
+			activeElement.classList.remove('border-2')
+			activeElement.classList.remove('border-sky-500')
+			activeMeta = null
+			activeElement = null
+		}
 	}
 
 	function onClick(event) {

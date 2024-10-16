@@ -2,6 +2,7 @@
 	import { tick, type Snippet } from 'svelte'
 	import 'reveal.js/dist/reveal.css'
 	import { setPresentation } from '$lib/store/deck.svelte.js'
+	import Overview from './overviewEditor.js'
 
 	type Options = {
 		reload?: boolean
@@ -16,8 +17,7 @@
 
 	let { children, options, ...props }: PresentationProps = $props()
 
-
-	let deck: any;
+	let deck: any
 
 	async function init() {
 		const Reveal = (await import('reveal.js')).default
@@ -64,9 +64,7 @@
 		}
 
 		// create deck instance
-		deck = new Reveal({ ...defaults, ...options})
-
-		setPresentation(deck);
+		deck = new Reveal({ ...defaults, ...options })
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
@@ -130,7 +128,15 @@
 			}
 		})
 
-		deck.initialize()
+		
+
+		deck.overview = new Overview(deck);
+		deck.initialize().then(() => {
+			console.log(deck.overview);
+			deck.overview = new Overview(deck)
+		})
+
+		setPresentation(deck)
 
 		if (options?.reload) {
 			// reload page after update to avoid HMR issues
