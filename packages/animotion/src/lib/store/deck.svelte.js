@@ -1,3 +1,14 @@
-import { writable } from "svelte/store";
+// eslint-disable-next-line no-undef
+let slides = $state();
 
-export const deckStore = writable();
+export function setPresentation(reveal) {
+	slides = reveal
+}
+
+export function getPresentation() {
+	return {
+		get slides() {
+			return slides
+		}
+	}
+}

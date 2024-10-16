@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte'
 	import 'reveal.js/dist/reveal.css'
-	import { deckStore } from '$lib/store/deck.svelte.js'
+	import { setPresentation } from '$lib/store/deck.svelte.js'
 
 	type Options = {
 		reload?: boolean
@@ -65,6 +65,8 @@
 
 		// create deck instance
 		deck = new Reveal({ ...defaults, ...options})
+
+		setPresentation(deck);
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
@@ -140,8 +142,8 @@
 	function reloadPageAfterUpdate() {
 		if (import.meta.hot) {
 			import.meta.hot.on('vite:afterUpdate', () => {
-				let currentSlide = deck.getCurrentSlide()
-				console.log(currentSlide);
+				// let currentSlide = deck.getCurrentSlide()
+				// console.log(currentSlide);
 				deck.sync()
 			})
 		}
