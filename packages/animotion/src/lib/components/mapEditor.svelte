@@ -2,11 +2,15 @@
     import { createEventDispatcher, onMount } from "svelte";
     import FrameSearchCreate from "$lib/components/FrameSearchCreate.svelte";
 	import DynamicSlide from "./DynamicSlide.svelte"
+	import PopupLink from "./PopupLink.svelte"
+    import { getPresentation } from "$lib/store/deck.svelte.js";
 
     let { saveMapData, mapData = $bindable() } = $props();
+    let presentation = $state();
 
     onMount(() => {
         console.log(mapData);
+        presentation = getPresentation();
     });
 
     function handleColumnChange(column, index) {}
@@ -48,6 +52,7 @@
             mapData = mapData.map((col) => [...col]); // Trigger reactivity
             saveMapData();
             draggedItem = null;
+            presentation.slides.sync();
         }
     }
 
@@ -121,6 +126,7 @@
                             href="vscode://file/{vsCodePath}\src\lib\frames\{item.path}.svelte"
                             >{item.path}</a
                         >
+                        <!-- <PopupLink linkText={item.path} fileName={item.path}/> -->
                         <!-- <DynamicSlide slidePath={item.path} className={"hover:visible hidden"} /> -->
                     </div>
                 {/each}
