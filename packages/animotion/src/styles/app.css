@@ -2,12 +2,16 @@
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/jetbrains-mono';
 
+
+
 /* presentation */
 @import '$lib/styles/theme.css';
 
 /* tailwind */
 @import 'tailwindcss/theme';
 @import 'tailwindcss/utilities';
+
+@import "daisyui/dist/full.css";
 
 /* reset */
 *,
