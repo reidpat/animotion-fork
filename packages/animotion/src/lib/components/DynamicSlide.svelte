@@ -16,7 +16,7 @@
             // Force re-import by appending a timestamp
             const timestamp = Date.now();
             const module = await import(
-                /* @vite-ignore */ `../slides/${slidePath}?t=${timestamp}`
+                /* @vite-ignore */ `../data/slides/${slidePath}?t=${timestamp}`
             );
             SlideComponent = module.default;
             // console.log(`Slide loaded successfully: ${slidePath}`);

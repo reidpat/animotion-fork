@@ -5,5 +5,6 @@ import Notes from './notes.svelte'
 import Presentation from './presentation.svelte'
 import Slide from './slide.svelte'
 import Transition from './transition.svelte'
+import PopupLink from './PopupLink.svelte'
 
-export { Action, Code, Embed, Notes, Presentation, Slide, Transition }
+export { Action, Code, Embed, Notes, Presentation, Slide, Transition, PopupLink }

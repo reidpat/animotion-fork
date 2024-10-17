@@ -156,7 +156,7 @@
     {/if}
 </div>
 
-<!-- <FrameSearchCreate bind:show {handleAdd} /> -->
+<FrameSearchCreate bind:show {handleAdd} />
 
 <style>
     :global(.droppable) {

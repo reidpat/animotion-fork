@@ -5,7 +5,7 @@ export async function load({ params, fetch }) {
     
     try {
         // Use the slug to determine which file to fetch
-        const response = await fetch(`/src/lib/presentations/${name}.json`);
+        const response = await fetch(`/src/lib/data/presentations/${name}.json`);
         
         if (!response.ok) {
             throw error(404, 'Presentation not found');
