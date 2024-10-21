@@ -29,14 +29,14 @@
   function selectFrame(event) {
     selectedFrame = event.detail.value;
     console.log(selectedFrame);
-    handleAdd({ name: selectedFrame });
+    handleAdd({ path: selectedFrame + '.svelte' });
     close();
   }
 
   let framesList;
 
   onMount(async () => {
-    let res = await fetch(`/editor`);
+    let res = await fetch(`/edit`);
     let json = await res.json();
     framesList = json.frames;
     // console.log("framesList: ", framesList)
@@ -63,7 +63,7 @@
 
   async function createNewFile() {
     console.log("createNewFile", frameSearch);
-    let res = await fetch(`/editor`, {
+    let res = await fetch(`/edit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@
 
   async function handleNew() {
     await createNewFile();
-    handleAdd({ name: frameSearch });
+    handleAdd({ path: frameSearch + '.svelte' });
     close();
   }
 </script>

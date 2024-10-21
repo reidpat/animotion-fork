@@ -1,7 +1,7 @@
 	<script>
 		import DynamicSlide from '$lib/components/DynamicSlide.svelte'
 		import { Presentation } from '$lib/index.js'
-		import Test1 from '$lib/slides/Test1.svelte'
+		import Test1 from '$lib/data/slides/Test1.svelte'
 		import { onMount } from 'svelte'
 
 		let slides = [];

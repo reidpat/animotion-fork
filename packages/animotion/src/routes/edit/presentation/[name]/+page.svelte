@@ -17,25 +17,51 @@
 		console.log(data)
 		mapData = data.presentation.slides
 		presentation = getPresentation()
+		setTimeout(() => {
+			presentation.slides.sync()
+		}, 500)
 	})
 
 	async function saveMapData() {
 		console.log(mapData)
-		let copy = mapData;
-		mapData = null;
-		presentation.slides.sync();
-		setTimeout(()=>{mapData = copy;}, 50)
-		setTimeout(()=>{ presentation.slides.sync()}, 0)	
-		setTimeout(()=>{ presentation.slides.sync()}, 1000)		
+		console.log(data.name);
+		// let copy = mapData;
+		// mapData = null;
+		presentation.slides.sync()
+		// setTimeout(()=>{mapData = copy;}, 50)
+		setTimeout(() => {
+			presentation.slides.sync()
+		}, 100)
+		setTimeout(() => {
+			presentation.slides.sync()
+		}, 1000)
+
+		let pres = data.presentation;
+		pres.slides = mapData;
+		try {
+			const response = await fetch(`/edit/presentation/${data.name}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(pres)
+			})
+
+			if (!response.ok) {
+				throw new Error('Failed to save map data')
+			}
+		} catch (error) {
+			console.error(error)
+		}
 		console.log('save')
 	}
 </script>
 
-<div class="absolute top-0 left-0 z-20">
-	<MapEditor bind:mapData {saveMapData} />
-</div>
 <Editor>
 	{#if mapData?.length}
+		<div class="absolute top-0 left-0 z-20">
+			<MapEditor bind:mapData {saveMapData} />
+		</div>
 		<Presentation
 			options={{
 				history: true,

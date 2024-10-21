@@ -1,1 +1,45 @@
-{"slides":[[{"path":"test1.svelte"},{"path":"test1-vert.svelte"}], [{"path":"test2.svelte"}]]}
+{
+  "slides": [
+    [
+      {
+        "path": "Test1.svelte"
+      },
+      {
+        "path": "Test1-vert.svelte"
+      },
+      {
+        "path": "Test2.svelte"
+      },
+      {
+        "path": "Test6.svelte"
+      }
+    ],
+    [
+      {
+        "path": "Test3.svelte"
+      },
+      {
+        "path": "Test4.svelte"
+      },
+      {
+        "path": "Test5.svelte"
+      }
+    ],
+    [
+      {
+        "path": "Test2.svelte"
+      },
+      {
+        "path": "Test1-vert.svelte"
+      }
+    ],
+    [
+      {
+        "path": "Test1.svelte"
+      },
+      {
+        "path": "Test3.svelte"
+      }
+    ]
+  ]
+}

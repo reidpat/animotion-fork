@@ -12,6 +12,10 @@
 @import 'tailwindcss/utilities';
 
 /* @import "daisyui/dist/full.css"; */
+/* @plugin "daisyui@5.0.0-alpha.18" {
+  logs: true;
+  themes: light --default, dark --prefersDark, cupcake;
+} */
 
 /* reset */
 *,

@@ -10,7 +10,7 @@
 
 
     async function loadSlide() {
-        console.log(`Loading slide: ${slidePath}`);
+        // console.log(`Loading slide: ${slidePath}`);
         try {
             // console.log(`Loading slide: ${slidePath}`);
             // Force re-import by appending a timestamp
