@@ -1,0 +1,3 @@
+[submodule "packages/animotion/src/lib/data"]
+	path = packages/animotion/src/lib/data
+	url = https://github.com/reidpat/slides-data
