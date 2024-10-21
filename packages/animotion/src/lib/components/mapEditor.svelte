@@ -101,12 +101,12 @@
     let contextMenuIndex = $state({ x: -1, y: -1 });
 </script>
 
-<input
+<!-- <input
     class="input input-primary top-0 left-0"
     type="text"
     placeholder="Vs Code Project Filepath"
     bind:value={vsCodePath}
-/>
+/> -->
 <div class="flex m-10">
     {#if mapData}
         {#each mapData as column, x}
