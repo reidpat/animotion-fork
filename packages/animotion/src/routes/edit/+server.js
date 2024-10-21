@@ -48,13 +48,8 @@ export async function POST({ request }) {
     const framesDirPath = path.join(__dirname, '../../lib/data/slides');
     const newFilePath = path.join(framesDirPath, `${name}.svelte`);
 
-    const fileContent = `<script>
-	import { Presentation, Slide, Code, Transition, Action, PopupLink } from '$lib/components/index.js'
-</script>
-
-<Slide class="h-full place-content-center place-items-center">
-	<h1>${name}</h1>
-</Slide>`;
+    let templatePath = 'src/lib/data/templates/basicSlide.svelte'
+    const fileContent = await fs.readFile(templatePath);
 
     try {
         await fs.writeFile(newFilePath, fileContent);

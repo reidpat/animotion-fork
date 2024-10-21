@@ -2,6 +2,9 @@
   "slides": [
     [
       {
+        "path": "TemplateTesting.svelte"
+      },
+      {
         "path": "Test1.svelte"
       },
       {
