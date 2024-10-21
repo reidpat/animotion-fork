@@ -1,32 +1,24 @@
-	<script>
-		import DynamicSlide from '$lib/components/DynamicSlide.svelte'
-		import { Presentation } from '$lib/index.js'
-		import Test1 from '$lib/data/slides/Test1.svelte'
-		import { onMount } from 'svelte'
+<script>
+	import DynamicSlide from '$lib/components/DynamicSlide.svelte'
+	import Presentation from '$lib/components/presentation.svelte'
+	import Test1 from '$lib/data/slides/Test1.svelte'
+	import { onMount } from 'svelte'
 
-		let slides = [];
+	export let data
 
-		async function loadSlides() {
-			try {
-				const timestamp = Date.now()
-				slides = [...slides]
-			} catch (e) {
-				console.error('Failed to load slide: test1.svelte', e)
-			}
-		}
+	onMount(() => {
+		console.log(data)
+	})
+</script>
 
-		onMount(() => {
-			loadSlides()
-		})
-	</script>
-
-
-	<Test1 />
-
-	<!-- <Presentation
-		options={{ history: true, transition: 'slide', controls: true, progress: true, reload: true, disableLayout: false }}
-	>	
-		{#each slides as slide}
-			<DynamicSlide slidePath={slide} />
-		{/each}
-	</Presentation> -->
+{#if data?.presentations}
+<div class="p-16 prose">
+	<h1>Presentations</h1>
+	{#each data.presentations as presentation}
+		<div>
+			<a class="btn btn-primary" href="presentation/{presentation}">{presentation}</a>
+			<a class="btn btn-primary btn-outline" href="edit/presentation/{presentation}">edit</a>
+		</div>{/each}
+	<button class="btn btn-primary mt-10">New Presentation</button>
+</div>
+{/if}
