@@ -5,7 +5,7 @@
 	import PopupLink from "./PopupLink.svelte"
     import { getPresentation } from "$lib/store/deck.svelte.js";
 
-    let { saveMapData, mapData = $bindable() } = $props();
+    let { saveMapData, mapData = $bindable(), navigateToIndex = $bindable() } = $props();
     let presentation = $state();
 
     onMount(() => {
@@ -95,6 +95,10 @@
         contextMenuVisible = false;
     }
 
+    function handleClick(event){
+        navigateToIndex(contextMenuIndex.x, contextMenuIndex.y)
+    }
+
     let contextMenuVisible = $state(false);
     let contextMenuX = $state(0);
     let contextMenuY = $state(0);
@@ -120,12 +124,10 @@
                         on:drop={(e) => handleDrop(e, x, y)}
                         on:contextmenu={(e) => handleContextMenu(e, x, y)}
                         on:hover={(e)=>handleHover(e)}
+                        on:click={()=> navigateToIndex(x, y)}
                     >
                         
-                        <a
-                            href="vscode://file/{vsCodePath}\src\lib\frames\{item.path}.svelte"
-                            >{item.path}</a
-                        >
+                        {item.path}
                         <!-- <PopupLink linkText={item.path} fileName={item.path}/> -->
                         <!-- <DynamicSlide slidePath={item.path} className={"hover:visible hidden"} /> -->
                     </div>
